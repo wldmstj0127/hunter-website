@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  background: #08090d;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 상단 고정 메뉴 */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
+}
+
+.header-inner {
+  width: 90%;
+  max-width: 1250px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+nav {
+  display: flex;
+  gap: 35px;
+}
+
+nav a {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+nav a:hover,
+nav a.active {
+  color: #83AD2C;
+}
+
+/* 페이지 제목 */
+.page-title {
+  padding: 150px 20px 85px;
+  text-align: center;
+  background: #ffbd5b;
+}
+
+.page-title .label {
+  color: #83AD2C;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin-bottom: 18px;
+}
+
+.page-title h1 {
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.page-title p {
+  margin-top: 18px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* 일러스트 갤러리 */
+.gallery {
+  width: 85%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 100px 0 130px;
+}
+
+/* 사진 한 장 */
+.gallery-item {
+  margin-bottom: 110px;
+}
+
+/* 사진 번호 */
+.image-number {
+  font-size: 13px;
+  color: #83AD2C;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+/* 사진 */
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #E5EAE1;
+}
+
+/* 사진 아래 구분선 */
+.image-line {
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+  margin-top: 35px;
+}
+
+/* 맨 위로 이동 */
+.back-top {
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+.back-top a {
+  display: inline-block;
+  border: 1px solid #83AD2C;
+  padding: 15px 45px;
+  font-size: 13px;
+  color: #51751B;
+  transition: 0.2s;
+}
+
+.back-top a:hover {
+  background: #83AD2C;
+  color: white;
+}
+
+/* 푸터 */
+footer {
+  background: #172820;
+  color: white;
+  padding: 55px 6%;
+}
+
+footer h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+footer p {
+  color: #aaa;
+  font-size: 11px;
+}
+
+/* 작은 화면 */
+@media (max-width: 700px) {
+  .logo {
+    font-size: 15px;
+  }
+
+  nav {
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 9px;
+  }
+
+  .page-title h1 {
+    font-size: 36px;
+  }
+
+  .gallery {
+    width: 92%;
+    padding-top: 60px;
+  }
+
+  .gallery-item {
+    margin-bottom: 65px;
+  }
+}
+
+</style>
+</head>
+<body>
+    <!-- 상단 메뉴 -->
+<header>
+  <div class="header-inner">
+
+    <a href="index.html" class="logo">
+      HUNTER × HUNTER
+    </a>
+
+    <nav>
+      <a href="index.html#home">ABOUT</a>
+      <a href="characters.html">CHARACTERS</a>
+      <a href="story.html" class="active">STORY</a>
+      <a href="index.html#exam">WORLD</a>
+      <a href="index.html#adventure">GOODS</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- 제목 -->
+<section class="page-title">
+  <p class="label">HUNTER × HUNTER</p>
+  <h1>ILLUSTRATION</h1>
+  <p>세상은 생각보다 넓다.</p>
+</section>
+
+<!-- 사진 갤러리 -->
+<main class="gallery">
+
+  <!-- 첫 번째 사진 -->
+  <div class="gallery-item">
+    <p class="image-number">01 / 06</p>
+    <img src="images/story1.jpg" alt="일러스트 1">
+    <div class="image-line"></div>
+  </div>
+
+  <!-- 두 번째 사진 -->
+  <div class="gallery-item">
+    <p class="image-number">02 / 06</p>
+    <img src="images/story2.jpg" alt="일러스트 2">
+    <div class="image-line"></div>
+  </div>
+
+  <!-- 세 번째 사진 -->
+  <div class="gallery-item">
+    <p class="image-number">03 / 06</p>
+    <img src="images/story3.jpg" alt="일러스트 3">
+    <div class="image-line"></div>
+  </div>
+
+  <!-- 네 번째 사진 -->
+  <div class="gallery-item">
+    <p class="image-number">04 / 06</p>
+    <img src="images/story4.jpg" alt="일러스트 4">
+    <div class="image-line"></div>
+  </div>
+
+  <!-- 다섯 번째 사진 -->
+  <div class="gallery-item">
+    <p class="image-number">05 / 06</p>
+    <img src="images/story5.jpg" alt="일러스트 5">
+    <div class="image-line"></div>
+  </div>
+
+  <!-- 여섯 번째 사진 -->
+  <div class="gallery-item">
+    <p class="image-number">06 / 06</p>
+    <img src="images/story6.jpg" alt="일러스트 6">
+    <div class="image-line"></div>
+  </div>
+
+</main>
+
+<!-- 맨 위로 -->
+<div class="back-top">
+  <a href="#top">BACK TO TOP ↑</a>
+</div>
+
+<!-- 푸터 -->
+<footer>
+  <h3>HUNTER × HUNTER</h3>
+  <p>UNOFFICIAL FAN WEBSITE DESIGN PROJECT</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+/* 전체 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+body {
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  color: #222;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 88%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2 {
+  font-size: 38px;
+  line-height: 1.4;
+}
+
+p {
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.label {
+  color: #83B735;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.more {
+  display: inline-block;
+  margin-top: 30px;
+  border-bottom: 1px solid;
+  padding-bottom: 8px;
+  font-size: 13px;
+}
+
+/* 사진 자동 맞춤 */
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 상단 메뉴 */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  padding: 0 6%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: 900;
+}
+
+nav {
+  display: flex;
+  gap: 35px;
+}
+
+nav a {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 메인 */
+.hero {
+  margin-top: 70px;
+  background: #DCEFFB;
+  min-height: 730px;
+}
+
+.hero-layout {
+  min-height: 730px;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 65px;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.hero h1 span {
+  color: #83B735;
+}
+
+.hero h3 {
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  height: 550px;
+  overflow: hidden;
+}
+
+.hero-image img {
+  object-fit: contain;
+}
+
+.button {
+  display: inline-block;
+  background: #83B735;
+  color: white;
+  padding: 15px 30px;
+  margin-top: 35px;
+  font-size: 13px;
+}
+
+/* 캐릭터 */
+.characters {
+  background: #F8F9F6;
+  padding: 140px 0;
+}
+
+.character-layout {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  align-items: center;
+}
+
+.character-images {
+  display: flex;
+  height: 370px;
+  gap: 6px;
+  padding: 0 20px;
+}
+
+.character-img {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: #DCE5D9;
+  transform: skewX(-8deg);
+}
+
+.character-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: skewX(8deg) scale(1.35);
+}
+
+/* 스토리 */
+.story {
+  height: 800px;
+  position: relative;
+  background: #9CC6E4;
+}
+
+.story > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 30%,
+    rgba(0,0,0,0.55)
+  );
+}
+
+.story-layout {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.story-text {
+  width: 350px;
+  color: white;
+}
+
+/* 헌터 시험 */
+.exam {
+  background: #EAEAE6;
+  padding: 140px 0;
+}
+
+.exam-layout {
+  display: grid;
+  grid-template-columns: 40% 55%;
+  gap: 5%;
+  align-items: center;
+}
+
+.exam-image {
+  height: 470px;
+  overflow: hidden;
+}
+
+/* 넨 */
+.nen {
+  background: #142426;
+  color: white;
+  padding: 140px 0;
+}
+
+.nen-layout {
+  display: grid;
+  grid-template-columns: 52% 43%;
+  gap: 5%;
+  align-items: center;
+}
+
+.nen-image {
+  height: 520px;
+  overflow: hidden;
+}
+
+.nen-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.nen-types span {
+  padding: 15px;
+  border: 1px solid #789C64;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* 모험 */
+.adventure {
+  background: #F6F7F2;
+  padding: 140px 0;
+}
+
+.adventure-layout {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  align-items: center;
+}
+
+.photo-area {
+  height: 530px;
+  position: relative;
+}
+
+.photo {
+  position: absolute;
+  width: 45%;
+  height: 250px;
+  border: 12px solid white;
+  box-shadow: 0 10px 25px #0002;
+  overflow: hidden;
+}
+
+.photo1 {
+  left: 5%;
+  top: 30px;
+  transform: rotate(-8deg);
+}
+
+.photo2 {
+  right: 3%;
+  top: 20px;
+  transform: rotate(8deg);
+}
+
+.photo3 {
+  left: 28%;
+  top: 250px;
+  transform: rotate(3deg);
+}
+
+/* 자격증 */
+.license {
+  background: #755842;
+  color: white;
+  padding: 140px 0;
+}
+
+.license-layout {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  align-items: center;
+}
+
+.license-image {
+  width: 350px;
+  height: 450px;
+  margin: auto;
+  transform: rotate(8deg);
+}
+
+.license-image img {
+  object-fit: contain;
+}
+
+/* 푸터 */
+footer {
+  background: #101515;
+  color: white;
+  padding: 50px;
+  text-align: center;
+}
+
+/* 작은 화면 */
+@media (max-width: 850px) {
+  .hero-layout,
+  .character-layout,
+  .exam-layout,
+  .nen-layout,
+  .adventure-layout,
+  .license-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .hero,
+  .hero-layout {
+    min-height: auto;
+  }
+
+  .hero {
+    padding: 70px 0;
+  }
+
+  .hero h1 {
+    font-size: 45px;
+  }
+
+  .hero-image {
+    height: 350px;
+  }
+
+  .character-images {
+    height: 280px;
+  }
+
+  .story {
+    height: 600px;
+  }
+
+  .photo-area {
+    height: 500px;
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+}
+
+</style>
+</head>
+<body>
+    <!-- 상단 고정 메뉴 -->
+<header>
+  <a href="#home" class="logo">HUNTER × HUNTER</a>
+
+  <nav>
+    <a href="#home">ABOUT</a>
+    <a href="#characters">CHARACTERS</a>
+    <a href="#story">STORY</a>
+    <a href="#exam">WORLD</a>
+    <a href="#adventure">GOODS</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- 01 메인 -->
+<section class="hero" id="home">
+  <div class="container hero-layout">
+
+    <div>
+      <p class="label">WELCOME TO THE HUNTER WORLD</p>
+
+      <h1>HUNTER<br><span>× HUNTER</span></h1>
+
+      <h3>모험의 시작, 헌터의 세계로.</h3>
+
+      <p>
+        헌터를 꿈꾸는 소년 곤과 동료들의<br>
+        끝없는 도전과 성장을 만나보세요.
+      </p>
+
+      <a href="#characters" class="button">
+        EXPLORE MORE →
+      </a>
+    </div>
+
+    <div class="hero-image">
+      <!-- 메인 곤 사진 -->
+      <img src="images/gon.jpg" alt="곤">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 02 캐릭터 -->
+<section class="characters" id="characters">
+  <div class="container character-layout">
+
+    <div>
+      <p class="label">01 / CHARACTERS</p>
+
+      <h2>운명처럼 만난<br>동료들</h2>
+
+      <p>
+        서로 다른 목표를 가진 이들이<br>
+        헌터의 세계에서 만나<br>
+        함께 모험을 시작합니다.
+      </p>
+
+      <a href="characters.html" class="more">
+        캐릭터 살펴보기 →
+      </a>
+    </div>
+
+    <div class="character-images" id="character-gallery">
+
+      <!-- 사선 박스 1 -->
+      <div class="character-img">
+        <img src="images/goncard.jpg" alt="곤">
+      </div>
+
+      <!-- 사선 박스 2 -->
+      <div class="character-img">
+        <img src="images/killuacard.jpg" alt="키르아">
+      </div>
+
+      <!-- 사선 박스 3 -->
+      <div class="character-img">
+        <img src="images/kurapikacard.jpg" alt="크라피카">
+      </div>
+
+      <!-- 사선 박스 4 -->
+      <div class="character-img">
+        <img src="images/leoriocard.jpg" alt="레오리오">
+      </div>
+
+      <!-- 사선 박스 5 -->
+      <div class="character-img">
+        <img src="images/hisokacard.jpg" alt="히소카">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 03 스토리 -->
+<section class="story" id="story">
+
+  <!-- 스토리 배경 사진 -->
+  <img src="images/story.jpg" alt="스토리 배경">
+
+  <div class="container story-layout">
+    <div class="story-text">
+      <p class="label">02 / STORY</p>
+
+      <h2>세상은<br>생각보다 넓다.</h2>
+
+      <p>
+        아직 가보지 못한 곳,<br>
+        만나지 못한 사람들.<br>
+        모험은 이제 시작이다.
+      </p>
+
+      <a href="story.html" class="more">
+        모험의 세계 알아보기 →
+      </a>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- 04 헌터 시험 -->
+<section class="exam" id="exam">
+  <div class="container exam-layout">
+
+    <div>
+      <p class="label">03 / HUNTER EXAM</p>
+
+      <h2>헌터 시험</h2>
+
+      <h3>당신은 헌터가 될 자격이 있는가?</h3>
+
+      <p>
+        매년 열리는 헌터 시험.<br>
+        생존, 지식, 능력, 그리고 의지까지.<br>
+        모든 것이 시험대에 오른다.
+      </p>
+
+      <a href="#nen" class="more">
+        헌터의 능력 알아보기 →
+      </a>
+    </div>
+
+    <div class="exam-image">
+      <img src="images/exam.jpg" alt="헌터 시험">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 05 넨 -->
+<section class="nen" id="nen">
+  <div class="container nen-layout">
+
+    <div class="nen-image">
+      <img src="images/nen.jpg" alt="넨">
+    </div>
+
+    <div>
+      <p class="label">04 / NEN</p>
+
+      <h2>보이지 않는 힘, 넨</h2>
+
+      <p>
+        생명 에너지인 오라를 다루는 기술.<br>
+        넨은 각자의 재능과 성향에 따라<br>
+        서로 다른 능력으로 발현됩니다.
+      </p>
+
+      <div class="nen-types">
+        <span>강화계</span>
+        <span>변화계</span>
+        <span>방출계</span>
+        <span>조작계</span>
+        <span>구현화계</span>
+        <span>특질계</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- 06 모험 -->
+<section class="adventure" id="adventure">
+  <div class="container adventure-layout">
+
+    <div>
+      <p class="label">05 / ADVENTURE</p>
+
+      <h2>끝나지 않는 모험</h2>
+
+      <p>
+        새로운 만남과 예측할 수 없는 도전.<br>
+        헌터의 여정은 언제나<br>
+        새로운 세계로 이어집니다.
+      </p>
+
+      <a href="#license" class="more">
+        모험의 끝으로 →
+      </a>
+    </div>
+
+    <div class="photo-area">
+
+      <div class="photo photo1">
+        <img src="images/adventure1.jpg" alt="모험 1">
+      </div>
+
+      <div class="photo photo2">
+        <img src="images/adventure2.jpg" alt="모험 2">
+      </div>
+
+      <div class="photo photo3">
+        <img src="images/adventure3.jpg" alt="모험 3">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 07 헌터 자격증 -->
+<section class="license" id="license">
+  <div class="container license-layout">
+
+    <div>
+      <p class="label">06 / HUNTER LICENSE</p>
+
+      <h2>헌터 자격증</h2>
+
+      <p>
+        수많은 시험과 도전, 그리고 성장.<br>
+        헌터의 세계를 향한 여정은<br>
+        지금 이 순간에도 계속됩니다.
+      </p>
+
+      <h3>THE ADVENTURE CONTINUES.</h3>
+    </div>
+
+    <div class="license-image">
+      <img src="images/license.jpg" alt="헌터 자격증">
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>HUNTER × HUNTER</p>
+  <small>UNOFFICIAL FAN WEBSITE DESIGN PROJECT</small>
+</footer>
+
+</body>
+</html>

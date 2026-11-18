@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  color: #222;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: 90%;
+  max-width: 1250px;
+  margin: auto;
+}
+
+/* 상단 메뉴 */
+header {
+  height: 70px;
+  width: 100%;
+  background: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+  width: 90%;
+  max-width: 1250px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+nav {
+  display: flex;
+  gap: 40px;
+  height: 100%;
+  align-items: center;
+}
+
+nav a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+}
+
+nav a:hover,
+nav a.active {
+  border-bottom-color: #83AD2C;
+}
+
+/* 상단 배너 */
+.banner {
+  margin-top: 70px;
+  height: 270px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20, 52, 31, .95),
+      rgba(37, 83, 47, .65)
+    ),
+    #28543A;
+  color: white;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.banner-inner {
+  position: relative;
+}
+
+.banner-label {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #A6C84C;
+  margin-bottom: 12px;
+}
+
+.banner h1 {
+  font-size: 65px;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.banner p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* 카테고리 */
+.category {
+  padding: 45px 0 25px;
+  border-bottom: 1px solid #eee;
+}
+
+.category-menu {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category-menu button {
+  border: 1px solid #e5e5e5;
+  background: white;
+  padding: 13px 27px;
+  min-width: 105px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.category-menu button.active,
+.category-menu button:hover {
+  background: #83AD2C;
+  color: white;
+  border-color: #83AD2C;
+}
+
+/* 캐릭터 카드 */
+.character-section {
+  padding: 50px 0 65px;
+}
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.character-card {
+  background: white;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 18px #0000000c;
+  cursor: pointer;
+  transition: .25s;
+  min-width: 0;
+  text-align: left;
+}
+
+.character-card:hover,
+.character-card.selected {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 24px #00000018;
+}
+
+.character-card.selected {
+  border-bottom: 3px solid #83AD2C;
+}
+
+/* 사선 이미지 */
+.card-image {
+  height: 235px;
+  overflow: hidden;
+  transform: skewX(-7deg);
+  margin: 0 12px;
+  background: #e5eadf;
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: skewX(7deg) scale(1.3);
+}
+
+.card-content {
+  padding: 22px 17px 18px;
+  min-height: 180px;
+  position: relative;
+}
+
+.card-content h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.eng-name {
+  font-size: 12px;
+  color: #888;
+}
+
+.card-description {
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 16px;
+  padding-bottom: 25px;
+  color: #444;
+}
+
+.card-arrow {
+  position: absolute;
+  right: 17px;
+  bottom: 12px;
+  font-size: 22px;
+}
+
+/* 상세 정보 */
+.detail-section {
+  border-top: 1px solid #eee;
+  padding: 75px 0 100px;
+  background: #fcfcfc;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 49% 24% 21%;
+  gap: 3%;
+  align-items: center;
+}
+
+.detail-main-image {
+  height: 460px;
+  background: #e5eadf;
+  overflow: hidden;
+}
+
+.detail-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-label {
+  color: #83AD2C;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.detail-info h2 {
+  font-size: 37px;
+  line-height: 1.3;
+}
+
+.detail-eng {
+  font-size: 18px;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+.detail-description {
+  font-size: 13px;
+  line-height: 1.9;
+  margin-top: 28px;
+  margin-bottom: 27px;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.info-table tr {
+  border-top: 1px solid #e5e5e5;
+}
+
+.info-table tr:last-child {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.info-table td {
+  font-size: 12px;
+  padding: 12px 3px;
+}
+
+.info-table td:first-child {
+  width: 40%;
+  font-weight: bold;
+}
+
+/* 오른쪽 작은 사진 */
+.detail-thumbnails {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  height: 380px;
+}
+
+.thumbnail {
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #e5eadf;
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: .2s;
+}
+
+.thumbnail:hover img {
+  transform: scale(1.08);
+}
+
+/* 화살표 */
+.detail-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.arrow-button {
+  border: 1px solid #ddd;
+  background: white;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+}
+
+.arrow-button:hover {
+  background: #83AD2C;
+  color: white;
+}
+
+.dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  background: #ddd;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.dot.active {
+  background: #83AD2C;
+}
+
+/* 푸터 */
+footer {
+  background: #172820;
+  color: white;
+  padding: 50px 0;
+}
+
+footer h3 {
+  font-size: 20px;
+  margin-bottom: 7px;
+}
+
+footer p {
+  font-size: 11px;
+  color: #aaa;
+}
+
+/* 반응형 */
+@media (max-width: 1000px) {
+  .character-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .detail-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .detail-thumbnails {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    height: 150px;
+  }
+
+  nav {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 15px;
+  }
+
+  nav {
+    gap: 8px;
+  }
+
+  nav a {
+    font-size: 9px;
+  }
+
+  .banner h1 {
+    font-size: 42px;
+  }
+
+  .character-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-image {
+    height: 180px;
+  }
+
+  .detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-main-image {
+    height: 350px;
+  }
+
+  .detail-thumbnails {
+    grid-column: auto;
+  }
+}
+</style>
+</head>
+<body>
+    <!-- 상단 고정 메뉴 -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      HUNTER × HUNTER
+    </a>
+
+    <nav>
+      <a href="index.html#home">ABOUT</a>
+      <a href="characters.html" class="active">CHARACTERS</a>
+      <a href="index.html#story">STORY</a>
+      <a href="index.html#exam">WORLD</a>
+      <a href="index.html#adventure">GOODS</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 상단 배너 -->
+<section class="banner">
+  <div class="container banner-inner">
+    <p class="banner-label">CHARACTERS</p>
+    <h1>CHARACTERS</h1>
+    <p>헌터 × 헌터의 주요 캐릭터들을 만나보세요.</p>
+  </div>
+</section>
+
+<!-- 카테고리 -->
+<section class="category">
+  <div class="container">
+    <div class="category-menu">
+      <button class="active" data-filter="all">ALL</button>
+      <button data-filter="main">MAIN</button>
+      <button data-filter="hunter">HUNTER</button>
+      <button data-filter="zodiac">ZODIAC</button>
+      <button data-filter="troupe">PHANTOM TROUPE</button>
+      <button data-filter="etc">ETC</button>
+    </div>
+  </div>
+</section>
+
+<!-- 캐릭터 카드 -->
+<section class="character-section">
+  <div class="container">
+
+    <div class="character-grid" id="characterGrid">
+
+      <!-- 곤 -->
+      <article class="character-card selected" data-index="0" data-category="main">
+        <div class="card-image">
+          <img src="images/gon2.jpg" alt="곤">
+        </div>
+        <div class="card-content">
+          <h3>곤 프릭스</h3>
+          <p class="eng-name">Gon Freecss</p>
+          <p class="card-description">
+            아버지를 찾기 위해 헌터가 된,<br>
+            순수하고 강한 소년.
+          </p>
+          <span class="card-arrow">→</span>
+        </div>
+      </article>
+
+      <!-- 키르아 -->
+      <article class="character-card" data-index="1" data-category="main">
+        <div class="card-image">
+          <img src="images/killua1.jpg" alt="키르아">
+        </div>
+        <div class="card-content">
+          <h3>키르아 조르딕</h3>
+          <p class="eng-name">Killua Zoldyck</p>
+          <p class="card-description">
+            암살 가문 조르딕가의 천재 소년.<br>
+            자유를 찾아 모험을 떠난다.
+          </p>
+          <span class="card-arrow">→</span>
+        </div>
+      </article>
+
+      <!-- 크라피카 -->
+      <article class="character-card" data-index="2" data-category="main">
+        <div class="card-image">
+          <img src="images/kurapika1.jpg" alt="크라피카">
+        </div>
+        <div class="card-content">
+          <h3>크라피카</h3>
+          <p class="eng-name">Kurapika</p>
+          <p class="card-description">
+            복수를 위해 헌터가 된<br>
+            쿠르타족의 생존자.
+          </p>
+          <span class="card-arrow">→</span>
+        </div>
+      </article>
+
+      <!-- 레오리오 -->
+      <article class="character-card" data-index="3" data-category="main">
+        <div class="card-image">
+          <img src="images/leorio1.jpg" alt="레오리오">
+        </div>
+        <div class="card-content">
+          <h3>레오리오</h3>
+          <p class="eng-name">Leorio</p>
+          <p class="card-description">
+            의사가 되기 위해 헌터를 목표로 하는<br>
+            열정적인 청년.
+          </p>
+          <span class="card-arrow">→</span>
+        </div>
+      </article>
+
+      <!-- 히소카 -->
+      <article class="character-card" data-index="4" data-category="etc">
+        <div class="card-image">
+          <img src="images/hisoka1.jpg" alt="히소카">
+        </div>
+        <div class="card-content">
+          <h3>히소카</h3>
+          <p class="eng-name">Hisoka</p>
+          <p class="card-description">
+            강한 상대와의 싸움을 즐기는<br>
+            수수께끼의 헌터.
+          </p>
+          <span class="card-arrow">→</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 캐릭터 상세 정보 -->
+<section class="detail-section" id="detail">
+  <div class="container">
+
+    <div class="detail-layout">
+
+      <!-- 큰 사진 -->
+      <div class="detail-main-image">
+        <img id="mainImage" src="images/gon1.jpg" alt="캐릭터 상세 이미지">
+      </div>
+
+      <!-- 캐릭터 정보 -->
+      <div class="detail-info">
+        <p class="detail-label">MAIN CHARACTER</p>
+
+        <h2 id="detailName">곤 프릭스</h2>
+        <p class="detail-eng" id="detailEnglish">Gon Freecss</p>
+
+        <p class="detail-description" id="detailDescription">
+          아버지를 찾기 위해 헌터가 된,<br>
+          순수하고 강한 소년.
+        </p>
+
+        <table class="info-table">
+          <tr>
+            <td>생일</td>
+            <td id="detailBirthday">5월 5일</td>
+          </tr>
+          <tr>
+            <td>신장</td>
+            <td id="detailHeight">154cm</td>
+          </tr>
+          <tr>
+            <td>소속</td>
+            <td id="detailGroup">프리 헌터</td>
+          </tr>
+          <tr>
+            <td>넨 계통</td>
+            <td id="detailNen">강화계</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 작은 사진 3개 -->
+      <div class="detail-thumbnails">
+        <button class="thumbnail" data-photo="1">
+          <img id="thumb1" src="images/gon3.jpg" alt="사진 2">
+        </button>
+        <button class="thumbnail" data-photo="2">
+          <img id="thumb2" src="images/gon4.jpg" alt="사진 3">
+        </button>
+        <button class="thumbnail" data-photo="3">
+          <img id="thumb3" src="images/gon5.jpg" alt="사진 4">
+        </button>
+      </div>
+
+    </div>
+
+    <!-- 좌우 캐릭터 변경 -->
+    <div class="detail-navigation">
+      <button class="arrow-button" id="prevButton" aria-label="이전 캐릭터">←</button>
+
+      <div class="dots" id="dots"></div>
+
+      <button class="arrow-button" id="nextButton" aria-label="다음 캐릭터">→</button>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <h3>HUNTER × HUNTER</h3>
+    <p>UNOFFICIAL FAN WEBSITE DESIGN PROJECT</p>
+  </div>
+</footer>
+
+<script>
+/*
+  캐릭터별 정보와 사진 파일 이름
+  사진 이름만 바꾸면 자동으로 적용돼!
+*/
+
+const characters = [
+  {
+    name: "곤 프릭스",
+    english: "Gon Freecss",
+    description: "아버지를 찾기 위해 헌터가 된, 순수하고 강한 소년.",
+    birthday: "5월 5일",
+    height: "154cm",
+    group: "프리 헌터",
+    nen: "강화계",
+    images: [
+        "images/gon1.jpg",
+        "images/gon3.jpg",
+      "images/gon4.jpg",
+      "images/gon5.jpg"
+    ]
+  },
+  {
+    name: "키르아 조르딕",
+    english: "Killua Zoldyck",
+    description: "암살 가문에서 태어나 자유를 찾아 떠난 소년. 곤의 소중한 친구.",
+    birthday: "7월 7일",
+    height: "158cm",
+    group: "프리 헌터",
+    nen: "변화계",
+    images: [
+      "images/killua2.jpg",
+      "images/killua3.jpg",
+      "images/killua4.jpg",
+      "images/killua5.jpg"
+    ]
+  },
+  {
+    name: "크라피카",
+    english: "Kurapika",
+    description: "동족의 원수를 갚고 빼앗긴 눈을 되찾기 위해 헌터가 된 쿠르타족의 생존자.",
+    birthday: "4월 4일",
+    height: "171cm",
+    group: "노스트라드 패밀리",
+    nen: "구현화계 / 특질계",
+    images: [
+      "images/kurapika2.jpg",
+      "images/kurapika3.jpg",
+      "images/kurapika4.jpg",
+      "images/kurapika5.jpg"
+    ]
+  },
+  {
+    name: "레오리오",
+    english: "Leorio",
+    description: "의사가 되겠다는 꿈을 가진 청년. 동료를 소중히 생각한다.",
+    birthday: "3월 3일",
+    height: "193cm",
+    group: "헌터 협회",
+    nen: "방출계",
+    images: [
+      "images/leorio2.jpg",
+      "images/leorio3.jpg",
+      "images/leorio4.jpg",
+      "images/leorio5.jpg"
+    ]
+  },
+  {
+    name: "히소카",
+    english: "Hisoka",
+    description: "강한 상대와의 싸움을 즐기며 자신만의 목적을 따라 행동하는 마술사.",
+    birthday: "6월 6일",
+    height: "187cm",
+    group: "프리 헌터",
+    nen: "변화계",
+    images: [
+      "images/hisoka2.jpg",
+      "images/hisoka3.jpg",
+      "images/hisoka4.jpg",
+      "images/hisoka5.jpg"
+    ]
+  }
+];
+
+let currentIndex = 0;
+
+const cards = document.querySelectorAll(".character-card");
+const mainImage = document.getElementById("mainImage");
+const dotsContainer = document.getElementById("dots");
+
+function showCharacter(index, scroll = false) {
+  currentIndex = (index + characters.length) % characters.length;
+
+  const character = characters[currentIndex];
+
+  document.getElementById("detailName").textContent = character.name;
+  document.getElementById("detailEnglish").textContent = character.english;
+  document.getElementById("detailDescription").textContent = character.description;
+  document.getElementById("detailBirthday").textContent = character.birthday;
+  document.getElementById("detailHeight").textContent = character.height;
+  document.getElementById("detailGroup").textContent = character.group;
+  document.getElementById("detailNen").textContent = character.nen;
+
+  mainImage.src = character.images[0];
+  mainImage.alt = character.name;
+
+  for (let i = 1; i <= 3; i++) {
+    const thumbnail = document.getElementById("thumb" + i);
+    thumbnail.src = character.images[i];
+    thumbnail.alt = character.name + " 사진 " + (i + 1);
+  }
+
+  cards.forEach((card, i) => {
+    card.classList.toggle("selected", i === currentIndex);
+  });
+
+  dotsContainer.innerHTML = "";
+
+  characters.forEach((item, i) => {
+    const dot = document.createElement("button");
+    dot.className = "dot" + (i === currentIndex ? " active" : "");
+    dot.setAttribute("aria-label", item.name);
+    dot.addEventListener("click", () => showCharacter(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  if (scroll) {
+    document.getElementById("detail").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+/* 카드 클릭 */
+cards.forEach((card) => {
+  card.addEventListener("click", () => {
+    showCharacter(Number(card.dataset.index), true);
+  });
+});
+
+/* 이전 캐릭터 */
+document.getElementById("prevButton").addEventListener("click", () => {
+  showCharacter(currentIndex - 1);
+});
+
+/* 다음 캐릭터 */
+document.getElementById("nextButton").addEventListener("click", () => {
+  showCharacter(currentIndex + 1);
+});
+
+/* 작은 사진 클릭하면 큰 사진 변경 */
+document.querySelectorAll(".thumbnail").forEach((button) => {
+  button.addEventListener("click", () => {
+    const photoIndex = Number(button.dataset.photo);
+    mainImage.src = characters[currentIndex].images[photoIndex];
+  });
+});
+
+/* 카테고리 필터 */
+document.querySelectorAll(".category-menu button").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".category-menu button").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const filter = button.dataset.filter;
+
+    cards.forEach((card) => {
+      card.style.display =
+        filter === "all" || card.dataset.category === filter
+          ? ""
+          : "none";
+    });
+  });
+});
+
+/* 처음 화면 */
+showCharacter(0);
+</script>
+    
+</body>
+</html>
